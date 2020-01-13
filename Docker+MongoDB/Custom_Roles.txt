@@ -1,0 +1,19 @@
+To log in to as an docker:
+
+mongo
+use admin
+db.auth(<USERNAME>,<PASSWORD>)
+
+Three role created:
+
+Create "readDataOnly" - read data collection only:
+
+db.createRole({role: "readDataOnly",privileges: [ { resource: {db : "patient", collection : "data"}, actions: ["find"] }], roles: []})
+
+Create "readVisitOnly" - read visit collection only:
+
+db.createRole({role: "readVisitsOnly",privileges: [ { resource: {db : "patient", collection : "visits"}, actions: ["find"] }], roles: []})
+
+Create "readNonPHI" - read date collection and visit collection:
+
+db.createRole({role: "readNonPHI", privileges: [], roles: ["readDataOnly", "readVisitsOnly"]})

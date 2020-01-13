@@ -1,0 +1,23 @@
+Command to research the Mongo server as you restart:
+docker run --name <CONTAINER> --restart=always -d -p 27017:27017 mongo mongod --auth
+
+Command
+docker exec -i -t <CONTAINER> bash
+
+When the mongo is in default:
+
+mongo
+use admin
+db.createUser({user:<USERNAME>,pwd:"<PASSWORD>",roles:[{role:"root",db:"admin"}]})
+exit
+
+Access Control is working on Docker
+
+To log in to as an docker:
+
+mongo
+use admin
+db.auth(<USERNAME>,<PASSWORD>)
+
+
+
